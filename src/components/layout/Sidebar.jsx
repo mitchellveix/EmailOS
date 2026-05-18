@@ -5,7 +5,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   LayoutDashboard,
   Mail,
-  FileText,
   Image,
   Folder,
   Puzzle,
@@ -15,14 +14,19 @@ import {
   ChevronDown,
 } from "lucide-react";
 import avatarSrc from "@/assets/avatar.png";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Sidebar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const isActive = (path) => location.pathname === path;
 
   return (
     <aside className="h-screen w-64 border-r bg-[#152033] text-white flex flex-col">
-      
-      {/* Top - Logo */}
+
+      {/* Logo */}
       <div className="p-4 text-xl font-bold">
         EmailOS
       </div>
@@ -31,7 +35,14 @@ export default function Sidebar() {
 
       {/* Navigation */}
       <nav className="flex flex-col gap-3 p-3">
-        <Button variant="ghost" className="justify-start hover:bg-[#233875]">
+
+        <Button
+          variant="ghost"
+          className={`justify-start hover:bg-[#233875] ${
+            isActive("/dashboard") ? "bg-[#233875]" : ""
+          }`}
+          onClick={() => navigate("/dashboard")}
+        >
           <LayoutDashboard className="mr-2" />
           Dashboard
         </Button>
@@ -39,11 +50,6 @@ export default function Sidebar() {
         <Button variant="ghost" className="justify-start hover:bg-[#233875]">
           <Mail className="mr-2" />
           Previous Emails
-        </Button>
-
-        <Button variant="ghost" className="justify-start hover:bg-[#233875]">
-          <FileText className="mr-2" />
-          Templates
         </Button>
 
         <Button variant="ghost" className="justify-start hover:bg-[#233875]">
@@ -71,7 +77,12 @@ export default function Sidebar() {
 
       {/* Secondary section */}
       <div className="p-2 flex flex-col gap-1">
-        <Button variant="outline" className="justify-start hover:bg-[#233875]">
+
+        <Button
+          variant="outline"
+          className="justify-start hover:bg-[#233875]"
+          onClick={() => navigate("/editor")}
+        >
           <Plus className="mr-2" />
           New Email
         </Button>
@@ -85,6 +96,7 @@ export default function Sidebar() {
       {/* Bottom user section */}
       <div className="mt-auto p-3 border-t">
         <div className="relative">
+
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
@@ -100,34 +112,38 @@ export default function Sidebar() {
               <div className="text-muted-foreground text-xs">Free Plan</div>
             </div>
 
-            <ChevronDown className={`transition-transform ${menuOpen ? "-rotate-90" : ""}`} />
+            <ChevronDown
+              className={`transition-transform ${menuOpen ? "-rotate-90" : ""}`}
+            />
           </button>
 
-          {menuOpen ? (
+          {menuOpen && (
             <div className="absolute left-full bottom-0 ml-2 z-10 min-w-[12rem] overflow-hidden rounded-xl border border-white/10 bg-[#152033] shadow-lg">
+
               <button
-                type="button"
                 onClick={() => setMenuOpen(false)}
                 className="w-full px-4 py-2 text-left text-sm hover:bg-[#233875]"
               >
                 Account
               </button>
+
               <button
-                type="button"
                 onClick={() => setMenuOpen(false)}
                 className="w-full px-4 py-2 text-left text-sm hover:bg-[#233875]"
               >
                 Billing
               </button>
+
               <button
-                type="button"
                 onClick={() => setMenuOpen(false)}
                 className="w-full px-4 py-2 text-left text-sm hover:bg-[#233875]"
               >
                 Log out
               </button>
+
             </div>
-          ) : null}
+          )}
+
         </div>
       </div>
     </aside>
