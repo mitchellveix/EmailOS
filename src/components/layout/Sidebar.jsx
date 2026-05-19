@@ -109,7 +109,7 @@ export default function Sidebar() {
 
             <div className="flex-1 text-left text-sm">
               <div className="font-medium">Mitch</div>
-              <div className="text-muted-foreground text-xs">Free Plan</div>
+              <div className="text-muted-foreground text-xs">VikesCo</div>
             </div>
 
             <ChevronDown

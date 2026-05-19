@@ -8,7 +8,7 @@ export default function App() {
     <div className="flex min-h-screen">
       <Sidebar />
 
-      <main className="flex-1 p-6 bg-[#e7edf7]">
+      <main className="flex-1 p-6 bg-[#f9fafc]">
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/dashboard" element={<DashboardPage />} />

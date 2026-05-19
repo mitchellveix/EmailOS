@@ -13,10 +13,12 @@ export default function DashboardCard({
   bgColor,
   titleColor,
   Icon,
+  onClick,
 }) {
   return (
     <Card
-      className="shadow-none min-h-[130px] flex flex-col justify-between"
+      onClick={onClick}
+      className="group relative overflow-hidden shadow-none min-h-[130px] flex flex-col justify-between cursor-pointer transition hover:brightness-95 active:scale-[0.98]"
       style={{
         backgroundColor: bgColor,
         border: "1px solid rgba(0, 0, 0, 0.06)",

@@ -29,9 +29,10 @@ export default function DashboardPage() {
         <DashboardCard
           title="Create New Email"
           description="Start with a template"
-          bgColor="#ecf1fc"
+          bgColor="#ecf2fc"
           titleColor="#1c2c4f"
           Icon={FilePlus}
+          onClick={() => navigate("/editor")}
         />
 
         <DashboardCard
