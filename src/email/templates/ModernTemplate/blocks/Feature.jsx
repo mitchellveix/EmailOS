@@ -1,4 +1,4 @@
-export default function Offer({ data }) {
+export default function Hero({ data }) {
   return (
     <div style={{ padding: "40px" }}>
       <img
@@ -7,9 +7,13 @@ export default function Offer({ data }) {
         width="100%"
       />
 
-      <h2>{data.title}</h2>
+      <h1>{data.title}</h1>
 
       <p>{data.body}</p>
+
+      <a href={data.link}>
+        {data.button}
+      </a>
     </div>
   );
 }
